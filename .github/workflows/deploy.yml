@@ -12,10 +12,11 @@ jobs:
   deploy:
     name: Deploy app to AWS Fargate
     runs-on: ubuntu-latest
+
   steps:
-    - name: Configure aws credintials for prod
-      #if: github.ref === 'refs/heads/main'
-      uses: aws-actions/configure-aws-credentials@v1
+    - name: Configuration aws credentials for prod
+      if: github.ref == 'refs/head/main'
+      uses: aws-actions/configure-aws-credentials@v4
       with:
         aws-access-key-id: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
